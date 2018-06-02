@@ -1,3 +1,5 @@
+'use strict';
+
 const programmers = 'https://files.gwo.pl/custom/random-data.json';
 
 const additionalProgrammer = {
@@ -9,24 +11,24 @@ const additionalProgrammer = {
 
 class RecruitmentAgency {
     constructor(url) {
-
         this.allProgrammers = [];
 
         fetch(url)
-            .then(resp => resp.json())
-            .then(resp => resp.map(e => {
-                return this.allProgrammers.push(e);
-            }));
+            .then(response => response.json())
+            .then(data => data.forEach(e => {
+                return this.allProgrammers.push(e)
+            }))
+            .catch(err => console.log(err));
 
+    };
+
+    addProgrammer (add) {
+
+        return [...this.allProgrammers, add];
 
     }
+    
 
-
-    addProgrammer(add) {
-
-        return this.allProgrammers = [...this.allProgrammers, add];
-
-    }
 
     getAllProgrammers() {
 
